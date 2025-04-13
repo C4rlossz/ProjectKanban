@@ -1,0 +1,87 @@
+﻿@model List<ActivityModel>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+
+            <h1 style="text-align: center;">Pendentes</h1>
+
+            @if(Model.Count() > 0)
+            {
+                @foreach (var activity in Model.Where(x => x.Status.Nome == "Pendente"))
+                {
+                    <div class="card text-center my-3">
+                        <div class="card-header bg-info" style="color: white;" > 
+                            @activity.Status.Nome
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@activity.Title</h5>
+                            <p class="card-text">@activity.Description</p>
+                            <a asp-action="SwitchCard" asp-controller="activity" asp-route-id="@activity.Id"><i class="bi bi-chevron-double-right"></i></a>
+                        </div>
+                        <div class="card-footer text-body-secondary">
+                            @activity.DateCriation.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-4">
+
+            <h1 style="text-align: center;">Em andamento</h1>
+
+            @if (Model.Count() > 0)
+            {
+                @foreach (var activity in Model.Where(x => x.Status.Nome == "Em Andamento"))
+                {
+                    <div class="card text-center my-3">
+                        <div class="card-header bg-warning" style="color: white;">
+                            @activity.Status.Nome
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@activity.Title</h5>
+                            <p class="card-text">@activity.Description</p>
+                            <a asp-action="BackCard" asp-controller="activity" asp-route-id="@activity.Id"><i class="bi bi-chevron-double-left"></i></a>
+                            <a asp-action="SwitchCard" asp-controller="activity" asp-route-id="@activity.Id"><i class="bi bi-chevron-double-right"></i></a>
+                        </div>
+                        <div class="card-footer text-body-secondary">
+                            @activity.DateCriation.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+                }
+            }
+
+
+
+        </div>
+        <div class="col-4">
+
+            <h1 style="text-align: center;">Finalizadas</h1>
+
+            @if (Model.Count() > 0)
+            {
+                @foreach (var activity in Model.Where(x => x.Status.Nome == "Finalizada"))
+                {
+                    <div class="card text-center my-3">
+                        <div class="card-header bg-success" style="color: white;">
+                            @activity.Status.Nome
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@activity.Title</h5>
+                            <p class="card-text">@activity.Description</p>
+                            <a asp-action="BackCard" asp-controller="activity" asp-route-id="@activity.Id"><i class="bi bi-chevron-double-left"></i></a>
+                            <a asp-action="Deletar" asp-controller="activity" asp-route-id="@activity.Id"><i class="bi bi-clipboard-x"></i></a>
+                        </div>
+                        <div class="card-footer text-body-secondary">
+                            @activity.DateCriation.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+                }
+            }
+
+
+        </div>
+
+    </div>
+</div>
