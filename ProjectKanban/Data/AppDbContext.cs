@@ -17,9 +17,9 @@ namespace ProjectKanban.Data
         {
 
             modelBuilder.Entity<StatusModel>().HasData(
-                    new StatusModel { Id = 1, Nome = "Pendente" },
-                    new StatusModel { Id = 2, Nome = "Em Andamento" },
-                    new StatusModel { Id = 3, Nome = "Finalizada" }
+                    new StatusModel { Id = 1, Nome = "Pendente"},
+                    new StatusModel { Id = 2, Nome = "Em Andamento"},
+                    new StatusModel { Id = 3, Nome = "Finalizada"}
 
                 );
 
